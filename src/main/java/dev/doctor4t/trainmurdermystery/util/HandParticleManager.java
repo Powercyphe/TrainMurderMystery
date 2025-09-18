@@ -10,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class HandParticleManager {
     private final CopyOnWriteArrayList<HandParticle> particles = new CopyOnWriteArrayList<>();
+    public static Vector3f vector;
 
     public void spawn(HandParticle p) {
         particles.add(p);
@@ -24,6 +25,7 @@ public class HandParticleManager {
     }
 
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+        vector = new Vector3f(0f, 0f, 1f);
         if (particles.isEmpty()) return;
 
         MatrixStack.Entry entry = matrices.peek();

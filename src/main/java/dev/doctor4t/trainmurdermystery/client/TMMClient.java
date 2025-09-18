@@ -31,6 +31,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.option.Perspective;
+import net.minecraft.client.particle.BillboardParticle;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
@@ -39,6 +40,8 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
@@ -198,7 +201,7 @@ public class TMMClient implements ClientModInitializer {
                     Vec3d muzzlePos = MatrixParticleManager.getMuzzlePosForPlayer(shooter);
                     if (muzzlePos != null) {
                         client.world.addParticle(
-                                ParticleTypes.SMOKE,
+                                TMMParticles.GUNSHOT,
                                 muzzlePos.x, muzzlePos.y, muzzlePos.z,
                                 0, 0, 0
                         );

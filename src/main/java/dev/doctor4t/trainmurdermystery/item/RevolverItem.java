@@ -76,11 +76,11 @@ public class RevolverItem extends Item {
                 HandParticle handParticle = new HandParticle()
                         .setTexture(TMM.id("textures/particle/gunshot.png"))
                         .setPos(0.1f, 0.275f, -0.2f)
-                        .setMaxAge(8)
+                        .setMaxAge(3)
                         .setSize(0.5f)
                         .setVelocity(0f, 0f, 0f)
                         .setLight(15, 15)
-                        .setAlpha(0.1f, 1f, 1f, 1f, 0.1f)
+                        .setAlpha(1f, 0.1f)
                         .setRenderLayer(TMMRenderLayers::additive);
 
                 TMMClient.handParticleManager.spawn(handParticle);
