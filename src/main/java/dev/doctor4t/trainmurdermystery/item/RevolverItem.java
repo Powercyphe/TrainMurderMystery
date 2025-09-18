@@ -2,7 +2,7 @@ package dev.doctor4t.trainmurdermystery.item;
 
 import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.block.SmallDoorBlock;
-import dev.doctor4t.trainmurdermystery.block.UnblastableDoorBlock;
+import dev.doctor4t.trainmurdermystery.block.TrainDoorBlock;
 import dev.doctor4t.trainmurdermystery.block_entity.SmallDoorBlockEntity;
 import dev.doctor4t.trainmurdermystery.client.TMMClient;
 import dev.doctor4t.trainmurdermystery.client.particle.HandParticle;
@@ -15,7 +15,6 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.enums.DoubleBlockHalf;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
@@ -29,8 +28,6 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
 
 public class RevolverItem extends Item {
     public RevolverItem(Settings settings) {
@@ -104,7 +101,7 @@ public class RevolverItem extends Item {
 
         TypedActionResult<ItemStack> shoot = shoot(world, player, context.getHand());
 
-        if (shoot.getResult() == ActionResult.CONSUME && state.getBlock() instanceof SmallDoorBlock && !(state.getBlock() instanceof UnblastableDoorBlock)) {
+        if (shoot.getResult() == ActionResult.CONSUME && state.getBlock() instanceof SmallDoorBlock && !(state.getBlock() instanceof TrainDoorBlock)) {
             BlockPos lowerPos = state.get(SmallDoorBlock.HALF) == DoubleBlockHalf.LOWER ? pos : pos.down();
             if (world.getBlockEntity(lowerPos) instanceof SmallDoorBlockEntity entity) {
                 entity.blast();

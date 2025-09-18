@@ -55,4 +55,3 @@ public class TMM implements ModInitializer {
 // TODO: Nicer starting phase + UI (2h)
 // TODO: System that remembers previous roles and allows cycling of roles (3h)
 // TODO: Train chimney smoke + ringable horn?
-// TODO: Add carpets

@@ -140,6 +140,11 @@ public class TMMGameLoop {
         // reset train
         resetTrain(world);
 
+        // discard all player bodies
+        for (PlayerBodyEntity body : world.getEntitiesByType(TMMEntities.PLAYER_BODY, playerBodyEntity -> true)) {
+            body.discard();
+        }
+
         List<ServerPlayerEntity> playerPool = new ArrayList<>(world.getPlayers().stream().filter(serverPlayerEntity -> !serverPlayerEntity.isInCreativeMode() && !serverPlayerEntity.isSpectator()).toList());
 
         // limit the game to 14 players, put players 15 to n in spectator mode

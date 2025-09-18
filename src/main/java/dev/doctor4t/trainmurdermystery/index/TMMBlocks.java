@@ -214,7 +214,7 @@ public interface TMMBlocks {
     // Doors
     Block SMALL_GLASS_DOOR = registrar.createWithItem("small_glass_door", new SmallDoorBlock(() -> TMMBlockEntities.SMALL_GLASS_DOOR, AbstractBlock.Settings.create().dynamicBounds().strength(-1, 3600000).mapColor(MapColor.CLEAR).dropsNothing().nonOpaque().allowsSpawning(Blocks::never).pistonBehavior(PistonBehavior.BLOCK).sounds(BlockSoundGroup.COPPER_BULB)), TMMItems.DECORATION_GROUP);
     Block SMALL_WOOD_DOOR = registrar.createWithItem("small_wood_door", new SmallDoorBlock(() -> TMMBlockEntities.SMALL_WOOD_DOOR, AbstractBlock.Settings.copy(SMALL_GLASS_DOOR).sounds(BlockSoundGroup.COPPER)), TMMItems.DECORATION_GROUP);
-    Block SMALL_TRAIN_DOOR = registrar.createWithItem("small_train_door", new UnblastableDoorBlock(() -> TMMBlockEntities.SMALL_TRAIN_DOOR, AbstractBlock.Settings.copy(SMALL_GLASS_DOOR).sounds(BlockSoundGroup.COPPER)), TMMItems.DECORATION_GROUP);
+    Block SMALL_TRAIN_DOOR = registrar.createWithItem("small_train_door", new TrainDoorBlock(() -> TMMBlockEntities.SMALL_TRAIN_DOOR, AbstractBlock.Settings.copy(SMALL_GLASS_DOOR).sounds(BlockSoundGroup.COPPER)), TMMItems.DECORATION_GROUP);
 
     // Wheels
     Block WHEEL = registrar.createWithItem("wheel", new WheelBlock(AbstractBlock.Settings.copy(DARK_STEEL).nonOpaque().sounds(BlockSoundGroup.COPPER)), TMMItems.DECORATION_GROUP);

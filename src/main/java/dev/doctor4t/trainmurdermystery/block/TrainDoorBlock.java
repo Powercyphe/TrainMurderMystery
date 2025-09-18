@@ -1,6 +1,7 @@
 package dev.doctor4t.trainmurdermystery.block;
 
 import dev.doctor4t.trainmurdermystery.block_entity.SmallDoorBlockEntity;
+import dev.doctor4t.trainmurdermystery.game.TMMGameLoop;
 import dev.doctor4t.trainmurdermystery.index.TMMItems;
 import dev.doctor4t.trainmurdermystery.index.TMMSounds;
 import net.minecraft.block.BlockState;
@@ -16,8 +17,8 @@ import net.minecraft.world.World;
 
 import java.util.function.Supplier;
 
-public class UnblastableDoorBlock extends SmallDoorBlock {
-    public UnblastableDoorBlock(Supplier<BlockEntityType<SmallDoorBlockEntity>> typeSupplier, Settings settings) {
+public class TrainDoorBlock extends SmallDoorBlock {
+    public TrainDoorBlock(Supplier<BlockEntityType<SmallDoorBlockEntity>> typeSupplier, Settings settings) {
         super(typeSupplier, settings);
     }
 
@@ -29,7 +30,7 @@ public class UnblastableDoorBlock extends SmallDoorBlock {
                 return ActionResult.PASS;
             }
 
-            if (player.isCreative()) {
+            if (player.isCreative() || !TMMGameLoop.gameComponent.isRunning()) {
                 return open(state, world, entity, lowerPos);
             } else {
                 if (player.getMainHandStack().isOf(TMMItems.REVOLVER)) {
