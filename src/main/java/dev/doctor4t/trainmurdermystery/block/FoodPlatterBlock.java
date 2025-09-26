@@ -26,6 +26,7 @@ import java.util.List;
 
 public class FoodPlatterBlock extends BlockWithEntity {
     public static final MapCodec<FoodPlatterBlock> CODEC = createCodec(FoodPlatterBlock::new);
+
     public FoodPlatterBlock(Settings settings) {
         super(settings);
     }
@@ -101,7 +102,8 @@ public class FoodPlatterBlock extends BlockWithEntity {
                 player.playSoundToPlayer(SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
                 player.setStackInHand(Hand.MAIN_HAND, randomItem);
             }
-        } if (player.getStackInHand(Hand.MAIN_HAND).isOf(TMMItems.POISON_VIAL)) {
+        }
+        if (player.getStackInHand(Hand.MAIN_HAND).isOf(TMMItems.POISON_VIAL)) {
             blockEntity.setPoisonedItemsCount(blockEntity.getPoisonedItemsCount() + 1);
             player.getStackInHand(Hand.MAIN_HAND).decrement(1);
             player.playSoundToPlayer(SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 0.5f, 1f);

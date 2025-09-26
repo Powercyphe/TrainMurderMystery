@@ -40,8 +40,8 @@ public abstract class DoorBlockEntity extends SyncingBlockEntity {
     }
 
     public static <T extends DoorBlockEntity> void serverTick(World world, BlockPos pos, BlockState state, T entity) {
-        if(state.get(DoorPartBlock.OPEN) && !entity.isBlasted()) {
-            entity.setCloseCountdown(entity.getCloseCountdown()-1);
+        if (state.get(DoorPartBlock.OPEN) && !entity.isBlasted()) {
+            entity.setCloseCountdown(entity.getCloseCountdown() - 1);
             if (entity.getCloseCountdown() <= 0) {
                 SmallDoorBlock.toggleDoor(state, world, (SmallDoorBlockEntity) entity, pos);
             }
@@ -50,7 +50,7 @@ public abstract class DoorBlockEntity extends SyncingBlockEntity {
         }
 
         if (entity.isJammed()) {
-            entity.setJammed(entity.getJammedTime()-1);
+            entity.setJammed(entity.getJammedTime() - 1);
         }
     }
 

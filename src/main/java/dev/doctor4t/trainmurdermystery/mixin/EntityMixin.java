@@ -11,7 +11,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Entity.class)
 public class EntityMixin {
-    @Shadow private World world;
+    @Shadow
+    private World world;
 
     @WrapMethod(method = "collidesWith")
     protected boolean tmm$solid(Entity other, Operation<Boolean> original) {

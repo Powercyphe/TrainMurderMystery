@@ -1,16 +1,36 @@
 package dev.doctor4t.trainmurdermystery.util;
 
+import dev.doctor4t.trainmurdermystery.TMM;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 public class ShopEntry {
     private final ItemStack stack;
     private final int price;
+    private final Type type;
 
-    public ShopEntry(ItemStack stack, int price) {
+    public enum Type {
+        WEAPON("gui/shop_slot_weapon"),
+        POISON("gui/shop_slot_poison"),
+        TOOL("gui/shop_slot_tool");
+
+        final Identifier texture;
+
+        Type(String texture) {
+            this.texture = TMM.id(texture);
+        }
+
+        public Identifier getTexture() {
+            return texture;
+        }
+    }
+
+    public ShopEntry(ItemStack stack, int price, Type type) {
         this.stack = stack;
         this.price = price;
+        this.type = type;
     }
 
     public boolean onBuy(@NotNull PlayerEntity player) {
@@ -34,5 +54,9 @@ public class ShopEntry {
 
     public int price() {
         return this.price;
+    }
+
+    public Type type() {
+        return type;
     }
 }

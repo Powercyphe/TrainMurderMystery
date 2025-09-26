@@ -134,7 +134,6 @@ public class PlayerBodyEntityRenderer<T extends LivingEntity, M extends EntityMo
     }
 
 
-
     @Override
     protected void renderLabelIfPresent(PlayerBodyEntity entity, Text text, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, float tickDelta) {
 

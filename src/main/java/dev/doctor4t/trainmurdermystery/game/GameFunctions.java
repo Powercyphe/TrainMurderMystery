@@ -32,7 +32,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.TeleportTarget;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -235,7 +234,8 @@ public class GameFunctions {
     }
 
     public static void killPlayer(PlayerEntity player, boolean spawnBody) {
-        if (player instanceof ServerPlayerEntity serverPlayerEntity) serverPlayerEntity.changeGameMode(GameMode.SPECTATOR);
+        if (player instanceof ServerPlayerEntity serverPlayerEntity)
+            serverPlayerEntity.changeGameMode(GameMode.SPECTATOR);
 
         if (spawnBody) {
             var body = TMMEntities.PLAYER_BODY.create(player.getWorld());

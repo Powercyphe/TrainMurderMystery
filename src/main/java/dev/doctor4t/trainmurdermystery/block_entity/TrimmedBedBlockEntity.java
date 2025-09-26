@@ -18,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class TrimmedBedBlockEntity extends BlockEntity {
     private boolean hasScorpion = false;
+
     public boolean getHasScorpion() {
         return hasScorpion;
     }

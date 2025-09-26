@@ -319,7 +319,6 @@ public class TrainMurderMysteryBlockTagGen extends FabricTagProvider.BlockTagPro
                 .add(TMMBlocks.RAIL_BEAM);
 
 
-
         this.getOrCreateTagBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS)
                 .addTag(TrainMurderMysteryBlockTags.VENT_SHAFTS);
     }

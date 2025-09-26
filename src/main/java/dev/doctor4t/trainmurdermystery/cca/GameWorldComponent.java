@@ -1,7 +1,7 @@
 package dev.doctor4t.trainmurdermystery.cca;
 
-import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
+import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -29,6 +29,7 @@ public class GameWorldComponent implements AutoSyncedComponent, ClientTickingCom
     public enum GameStatus {
         INACTIVE, STARTING, ACTIVE, STOPPING
     }
+
     private GameStatus gameStatus = GameStatus.INACTIVE;
     private int fade = 0;
 
@@ -246,7 +247,7 @@ public class GameWorldComponent implements AutoSyncedComponent, ClientTickingCom
     private void tickCommon() {
         // fade and start / stop game
         if (this.getGameStatus() == GameStatus.STARTING || this.getGameStatus() == GameStatus.STOPPING) {
-            this.setFade(fade+1);
+            this.setFade(fade + 1);
 
             if (this.getFade() >= GameConstants.FADE_TIME + GameConstants.FADE_PAUSE) {
                 if (world instanceof ServerWorld serverWorld) {
@@ -257,7 +258,7 @@ public class GameWorldComponent implements AutoSyncedComponent, ClientTickingCom
                 }
             }
         } else if (this.getGameStatus() == GameStatus.ACTIVE || this.getGameStatus() == GameStatus.INACTIVE) {
-            this.setFade(fade-1);
+            this.setFade(fade - 1);
         }
     }
 

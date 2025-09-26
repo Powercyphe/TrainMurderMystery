@@ -10,11 +10,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HungerManager.class)
 public class HungerManagerMixin {
-    @Shadow private int foodLevel;
+    @Shadow
+    private int foodLevel;
 
-    @Shadow private float saturationLevel;
+    @Shadow
+    private float saturationLevel;
 
-    @Shadow private float exhaustion;
+    @Shadow
+    private float exhaustion;
 
     @Inject(method = "update", at = @At("HEAD"))
     public void tmm$overrideFood(PlayerEntity player, CallbackInfo ci) {

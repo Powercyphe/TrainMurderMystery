@@ -7,7 +7,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(AbstractBlock.Settings.class)
 public class AbstractBlockSettingsMixin implements BlockSettingsAdditions {
-    @Shadow boolean collidable;
+    @Shadow
+    boolean collidable;
 
     @Override
     public AbstractBlock.Settings tmm$setCollidable(boolean collidable) {

@@ -49,7 +49,7 @@ public abstract class LimitedHandledScreen<T extends ScreenHandler> extends Scre
     private long touchDropTime;
     private ItemStack touchDropReturningStack = ItemStack.EMPTY;
     private long touchDropTimer;
-    protected final Set<Slot> cursorDragSlots = Sets.<Slot>newHashSet();
+    protected final Set<Slot> cursorDragSlots = Sets.newHashSet();
     protected boolean cursorDragging;
     private int heldButtonType;
     private int heldButtonCode;
@@ -152,7 +152,8 @@ public abstract class LimitedHandledScreen<T extends ScreenHandler> extends Scre
     }
 
     protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
-        if (!this.handler.getCursorStack().isEmpty() || this.focusedSlot == null || !this.focusedSlot.hasStack()) return;
+        if (!this.handler.getCursorStack().isEmpty() || this.focusedSlot == null || !this.focusedSlot.hasStack())
+            return;
         this.renderLimitedInventoryTooltip(context, this.focusedSlot.getStack());
     }
 
@@ -168,7 +169,8 @@ public abstract class LimitedHandledScreen<T extends ScreenHandler> extends Scre
             if (newWidth > tooltipWidth) tooltipWidth = newWidth;
         }
         context.drawTooltip(this.textRenderer, name, itemStack.getTooltipData(), this.x + 76 - (nameWidth / 2), this.y - 2);
-        if (tooltipWidth > 0) context.drawTooltip(this.textRenderer, tooltips, itemStack.getTooltipData(), this.x + 76 - (tooltipWidth / 2), this.y + 50);
+        if (tooltipWidth > 0)
+            context.drawTooltip(this.textRenderer, tooltips, itemStack.getTooltipData(), this.x + 76 - (tooltipWidth / 2), this.y + 50);
     }
 
     protected List<Text> getTooltipFromItem(ItemStack stack) {
@@ -222,7 +224,7 @@ public abstract class LimitedHandledScreen<T extends ScreenHandler> extends Scre
         if (itemStack.isEmpty() && isHotbarSlot(slot)) {
             Pair<Identifier, Identifier> pair = slot.getBackgroundSprite();
             if (pair != null) {
-                Sprite sprite = (Sprite) this.client.getSpriteAtlas(pair.getFirst()).apply(pair.getSecond());
+                Sprite sprite = this.client.getSpriteAtlas(pair.getFirst()).apply(pair.getSecond());
                 context.drawSprite(i, j, 0, 16, 16, sprite);
                 bl2 = true;
             }
@@ -499,8 +501,8 @@ public abstract class LimitedHandledScreen<T extends ScreenHandler> extends Scre
     protected boolean isPointWithinBounds(int x, int y, int width, int height, double pointX, double pointY) {
         int i = this.x;
         int j = this.y;
-        pointX -= (double) i;
-        pointY -= (double) j;
+        pointX -= i;
+        pointY -= j;
         return pointX >= (double) (x - 1) && pointX < (double) (x + width + 1) && pointY >= (double) (y - 1) && pointY < (double) (y + height + 1);
     }
 

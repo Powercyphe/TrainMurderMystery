@@ -31,9 +31,13 @@ import java.awt.*;
 
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
-    @Shadow @Final private MinecraftClient client;
-    @Unique private static final Identifier TMM_HOTBAR_TEXTURE = TMM.id("hud/hotbar");
-    @Unique private static final Identifier TMM_HOTBAR_SELECTION_TEXTURE = TMM.id("hud/hotbar_selection");
+    @Shadow
+    @Final
+    private MinecraftClient client;
+    @Unique
+    private static final Identifier TMM_HOTBAR_TEXTURE = TMM.id("hud/hotbar");
+    @Unique
+    private static final Identifier TMM_HOTBAR_SELECTION_TEXTURE = TMM.id("hud/hotbar_selection");
 
     @Inject(method = "renderMainHud", at = @At("TAIL"))
     private void tmm$renderHud(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
@@ -42,7 +46,8 @@ public class InGameHudMixin {
         var renderer = MinecraftClient.getInstance().textRenderer;
         MoodRenderer.renderHud(player, renderer, context, tickCounter);
         RoleNameRenderer.renderHud(renderer, player, context, tickCounter);
-        if (MinecraftClient.getInstance().currentScreen == null) StoreRenderer.renderHud(renderer, player, context, tickCounter.getTickDelta(true));
+        if (MinecraftClient.getInstance().currentScreen == null)
+            StoreRenderer.renderHud(renderer, player, context, tickCounter.getTickDelta(true));
     }
 
     @WrapMethod(method = "renderCrosshair")

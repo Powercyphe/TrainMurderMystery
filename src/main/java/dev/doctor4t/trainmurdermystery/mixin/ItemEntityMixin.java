@@ -19,9 +19,11 @@ public abstract class ItemEntityMixin {
     @Shadow
     public abstract @Nullable Entity getOwner();
 
-    @Shadow private @Nullable UUID throwerUuid;
+    @Shadow
+    private @Nullable UUID throwerUuid;
 
-    @Shadow public abstract ItemStack getStack();
+    @Shadow
+    public abstract ItemStack getStack();
 
     @WrapMethod(method = "onPlayerCollision")
     public void tmm$preventGunPickup(PlayerEntity player, Operation<Void> original) {

@@ -100,7 +100,8 @@ public class StoreRenderer {
         public void render(@NotNull TextRenderer renderer, @NotNull DrawContext context, int colour, float delta) {
             if (MathHelper.floor(this.lastValue) != MathHelper.floor(this.value)) {
                 var player = MinecraftClient.getInstance().player;
-                if (player != null) player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), TMMSounds.BALANCE_CLICK, SoundCategory.PLAYERS, 0.1f, 1 + this.lastValue - this.value, player.getRandom().nextLong());
+                if (player != null)
+                    player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), TMMSounds.BALANCE_CLICK, SoundCategory.PLAYERS, 0.1f, 1 + this.lastValue - this.value, player.getRandom().nextLong());
             }
             var value = MathHelper.lerp(delta, this.lastValue, this.value);
             var digit = MathHelper.floor(value) % 10;
@@ -113,8 +114,10 @@ public class StoreRenderer {
             if (value < 1 && !this.force) alpha *= value;
             var baseColour = colour | (int) alpha << 24;
             var nextColour = colour | (int) (Math.abs(offset) * 255.0f) << 24;
-            if ((baseColour & -67108864) != 0) context.drawTextWithShadow(renderer, String.valueOf(digit), 0, 0, baseColour);
-            if ((nextColour & -67108864) != 0) context.drawTextWithShadow(renderer, String.valueOf(digitNext), 0, renderer.fontHeight + 2, nextColour);
+            if ((baseColour & -67108864) != 0)
+                context.drawTextWithShadow(renderer, String.valueOf(digit), 0, 0, baseColour);
+            if ((nextColour & -67108864) != 0)
+                context.drawTextWithShadow(renderer, String.valueOf(digitNext), 0, renderer.fontHeight + 2, nextColour);
             context.getMatrices().pop();
         }
 

@@ -32,7 +32,7 @@ public class FirecrackerEntityRenderer extends EntityRenderer<FirecrackerEntity>
         if (entity.age >= 2 || !(this.dispatcher.camera.getFocusedEntity().squaredDistanceTo(entity) < 12.25)) {
             matrices.push();
             matrices.scale(this.scale, this.scale, this.scale);
-            matrices.translate(0, entity.hashCode() % 30/1000f, 0); // prevent z-fighting
+            matrices.translate(0, entity.hashCode() % 30 / 1000f, 0); // prevent z-fighting
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-entity.getYaw()));
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
             this.itemRenderer

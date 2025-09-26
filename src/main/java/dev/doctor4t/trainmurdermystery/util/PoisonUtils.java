@@ -106,16 +106,23 @@ public class PoisonUtils {
         int sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1, sz = z0 < z1 ? 1 : -1;
         int err1, err2;
 
-        int ax = 2*dx, ay = 2*dy, az = 2*dz;
+        int ax = 2 * dx, ay = 2 * dy, az = 2 * dz;
 
         if (dx >= dy && dx >= dz) {
             err1 = ay - dx;
             err2 = az - dx;
             while (x0 != x1) {
                 x0 += sx;
-                if (err1 > 0) { y0 += sy; err1 -= 2*dx; }
-                if (err2 > 0) { z0 += sz; err2 -= 2*dx; }
-                err1 += ay; err2 += az;
+                if (err1 > 0) {
+                    y0 += sy;
+                    err1 -= 2 * dx;
+                }
+                if (err2 > 0) {
+                    z0 += sz;
+                    err2 -= 2 * dx;
+                }
+                err1 += ay;
+                err2 += az;
 
                 if (isBlocking(world, new BlockPos(x0, y0, z0))) return false;
             }
@@ -124,9 +131,16 @@ public class PoisonUtils {
             err2 = az - dy;
             while (y0 != y1) {
                 y0 += sy;
-                if (err1 > 0) { x0 += sx; err1 -= 2*dy; }
-                if (err2 > 0) { z0 += sz; err2 -= 2*dy; }
-                err1 += ax; err2 += az;
+                if (err1 > 0) {
+                    x0 += sx;
+                    err1 -= 2 * dy;
+                }
+                if (err2 > 0) {
+                    z0 += sz;
+                    err2 -= 2 * dy;
+                }
+                err1 += ax;
+                err2 += az;
 
                 if (isBlocking(world, new BlockPos(x0, y0, z0))) return false;
             }
@@ -135,9 +149,16 @@ public class PoisonUtils {
             err2 = ax - dz;
             while (z0 != z1) {
                 z0 += sz;
-                if (err1 > 0) { y0 += sy; err1 -= 2*dz; }
-                if (err2 > 0) { x0 += sx; err2 -= 2*dz; }
-                err1 += ay; err2 += ax;
+                if (err1 > 0) {
+                    y0 += sy;
+                    err1 -= 2 * dz;
+                }
+                if (err2 > 0) {
+                    x0 += sx;
+                    err2 -= 2 * dz;
+                }
+                err1 += ay;
+                err2 += ax;
 
                 if (isBlocking(world, new BlockPos(x0, y0, z0))) return false;
             }

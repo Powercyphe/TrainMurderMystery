@@ -45,7 +45,7 @@ public class FlashParticle extends SpriteBillboardParticle {
 
         @Override
         public @Nullable Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return super.createParticle(parameters, world, x,y,z,velocityX,velocityY,velocityZ, 0.2f);
+            return super.createParticle(parameters, world, x, y, z, velocityX, velocityY, velocityZ, 0.2f);
         }
     }
 
@@ -56,7 +56,7 @@ public class FlashParticle extends SpriteBillboardParticle {
 
         @Override
         public @Nullable Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return super.createParticle(parameters, world, x,y,z,velocityX,velocityY,velocityZ, 0.4f);
+            return super.createParticle(parameters, world, x, y, z, velocityX, velocityY, velocityZ, 0.4f);
         }
     }
 
@@ -67,7 +67,7 @@ public class FlashParticle extends SpriteBillboardParticle {
 
         @Override
         public @Nullable Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return super.createParticle(parameters, world, x,y,z,velocityX,velocityY,velocityZ, .8f);
+            return super.createParticle(parameters, world, x, y, z, velocityX, velocityY, velocityZ, .8f);
         }
     }
 

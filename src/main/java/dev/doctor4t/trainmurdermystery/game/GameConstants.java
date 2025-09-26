@@ -39,7 +39,7 @@ public interface GameConstants {
     // Game areas
     Box READY_AREA = new Box(-981, -1, -364, -813, 3, -358);
     BlockPos PLAY_POS = new BlockPos(-19, 122, -539);
-    Consumer<ServerPlayerEntity> SPECTATOR_TP = serverPlayerEntity -> serverPlayerEntity.teleport(serverPlayerEntity.getServerWorld(), -68 ,133, -535.5, -90, 15);
+    Consumer<ServerPlayerEntity> SPECTATOR_TP = serverPlayerEntity -> serverPlayerEntity.teleport(serverPlayerEntity.getServerWorld(), -68, 133, -535.5, -90, 15);
     Box PLAY_AREA = new Box(-140, 118, -535.5f - 15, 230, 200, -535.5f + 15);
     Box BACKUP_TRAIN_LOCATION = new Box(-57, 64, -531, 177, 74, -540);
     Box TRAIN_LOCATION = BACKUP_TRAIN_LOCATION.offset(0, 55, 0);
@@ -55,19 +55,24 @@ public interface GameConstants {
 
     // Shop Variables
     List<ShopEntry> SHOP_ENTRIES = List.of(
-            new ShopEntry(TMMItems.REVOLVER.getDefaultStack(), 150),
-            new ShopEntry(TMMItems.KNIFE.getDefaultStack(), 50),
-            new ShopEntry(TMMItems.LOCKPICK.getDefaultStack(), 75),
-            new ShopEntry(TMMItems.BLACKOUT.getDefaultStack(), 75) {
-                @Override
-                public boolean onBuy(@NotNull PlayerEntity player) {
-                    return PlayerStoreComponent.useBlackout(player);
-                }
-            },
-            new ShopEntry(TMMItems.PSYCHO_MODE.getDefaultStack(), 75) {
+            new ShopEntry(TMMItems.KNIFE.getDefaultStack(), 50, ShopEntry.Type.WEAPON),
+            new ShopEntry(TMMItems.REVOLVER.getDefaultStack(), 75, ShopEntry.Type.WEAPON),
+            new ShopEntry(TMMItems.GRENADE.getDefaultStack(), 75, ShopEntry.Type.WEAPON),
+            new ShopEntry(TMMItems.PSYCHO_MODE.getDefaultStack(), 75, ShopEntry.Type.WEAPON) {
                 @Override
                 public boolean onBuy(@NotNull PlayerEntity player) {
                     return PlayerStoreComponent.usePsychoMode(player);
+                }
+            },
+            new ShopEntry(TMMItems.POISON_VIAL.getDefaultStack(), 150, ShopEntry.Type.POISON),
+            new ShopEntry(TMMItems.SCORPION.getDefaultStack(), 150, ShopEntry.Type.POISON),
+            new ShopEntry(TMMItems.LOCKPICK.getDefaultStack(), 150, ShopEntry.Type.TOOL),
+            new ShopEntry(TMMItems.CROWBAR.getDefaultStack(), 150, ShopEntry.Type.TOOL),
+            new ShopEntry(TMMItems.BODY_BAG.getDefaultStack(), 150, ShopEntry.Type.TOOL),
+            new ShopEntry(TMMItems.BLACKOUT.getDefaultStack(), 75, ShopEntry.Type.TOOL) {
+                @Override
+                public boolean onBuy(@NotNull PlayerEntity player) {
+                    return PlayerStoreComponent.useBlackout(player);
                 }
             }
     );

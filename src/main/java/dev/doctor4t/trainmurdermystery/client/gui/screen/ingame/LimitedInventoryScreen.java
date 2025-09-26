@@ -30,9 +30,11 @@ public class LimitedInventoryScreen extends LimitedHandledScreen<PlayerScreenHan
         super.init();
         if (!TMMComponents.GAME.get(this.player.getWorld()).isHitman(this.player)) return;
         var entries = GameConstants.SHOP_ENTRIES;
-        var x = this.width / 2 - entries.size() * 36 / 2 + 9;
+        int apart = 38;
+        var x = this.width / 2 - entries.size() * apart / 2 + 9;
         var y = this.y - 46;
-        for (var i = 0; i < entries.size(); i++) this.addDrawableChild(new StoreItemWidget(this, x + 36 * i, y, entries.get(i), i));
+        for (var i = 0; i < entries.size(); i++)
+            this.addDrawableChild(new StoreItemWidget(this, x + apart * i, y, entries.get(i), i));
     }
 
     @Override
@@ -48,7 +50,6 @@ public class LimitedInventoryScreen extends LimitedHandledScreen<PlayerScreenHan
     }
 
     public static class StoreItemWidget extends ButtonWidget {
-        public static final Identifier SHOP_TEXTURE = TMM.id("gui/shop_slot");
         public final LimitedInventoryScreen screen;
         public final ShopEntry entry;
 
@@ -61,7 +62,7 @@ public class LimitedInventoryScreen extends LimitedHandledScreen<PlayerScreenHan
         @Override
         protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
             super.renderWidget(context, mouseX, mouseY, delta);
-            context.drawGuiTexture(SHOP_TEXTURE, this.getX() - 7, this.getY() - 7, 30, 30);
+            context.drawGuiTexture(entry.type().getTexture(), this.getX() - 7, this.getY() - 7, 30, 30);
             context.drawItem(this.entry.stack(), this.getX(), this.getY());
             if (this.isHovered()) {
                 this.screen.renderLimitedInventoryTooltip(context, this.entry.stack());
@@ -72,6 +73,7 @@ public class LimitedInventoryScreen extends LimitedHandledScreen<PlayerScreenHan
         }
 
         @Override
-        public void drawMessage(DrawContext context, TextRenderer textRenderer, int color) {}
+        public void drawMessage(DrawContext context, TextRenderer textRenderer, int color) {
+        }
     }
 }

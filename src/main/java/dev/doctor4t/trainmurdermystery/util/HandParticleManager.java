@@ -1,7 +1,10 @@
 package dev.doctor4t.trainmurdermystery.util;
 
 import dev.doctor4t.trainmurdermystery.client.particle.HandParticle;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -45,9 +48,9 @@ public class HandParticleManager {
             int currentFrame;
 
             if (p.loop) {
-                currentFrame = (int)((p.age / p.maxAge) * p.frames) % p.frames;
+                currentFrame = (int) ((p.age / p.maxAge) * p.frames) % p.frames;
             } else {
-                currentFrame = Math.min((int)((p.age / p.maxAge) * p.frames), p.frames - 1);
+                currentFrame = Math.min((int) ((p.age / p.maxAge) * p.frames), p.frames - 1);
             }
 
             float v0 = frameHeight * currentFrame;
@@ -57,9 +60,9 @@ public class HandParticleManager {
             float u1 = 1f;
 
             Vector3f c1 = new Vector3f(center).add(new Vector3f(right).mul(-half)).add(new Vector3f(up).mul(-half));
-            Vector3f c2 = new Vector3f(center).add(new Vector3f(right).mul(-half)).add(new Vector3f(up).mul( half));
-            Vector3f c3 = new Vector3f(center).add(new Vector3f(right).mul( half)).add(new Vector3f(up).mul( half));
-            Vector3f c4 = new Vector3f(center).add(new Vector3f(right).mul( half)).add(new Vector3f(up).mul(-half));
+            Vector3f c2 = new Vector3f(center).add(new Vector3f(right).mul(-half)).add(new Vector3f(up).mul(half));
+            Vector3f c3 = new Vector3f(center).add(new Vector3f(right).mul(half)).add(new Vector3f(up).mul(half));
+            Vector3f c4 = new Vector3f(center).add(new Vector3f(right).mul(half)).add(new Vector3f(up).mul(-half));
 
             putVertex(consumer, model, c1, u0, v1, p);
             putVertex(consumer, model, c2, u0, v0, p);
@@ -74,7 +77,9 @@ public class HandParticleManager {
         int n = p.rColors.length;
         float r, g, b;
         if (n == 1) {
-            r = p.rColors[0]; g = p.gColors[0]; b = p.bColors[0];
+            r = p.rColors[0];
+            g = p.gColors[0];
+            b = p.bColors[0];
         } else {
             float scaled = t * (n - 1);
             int idx = (int) Math.floor(scaled);

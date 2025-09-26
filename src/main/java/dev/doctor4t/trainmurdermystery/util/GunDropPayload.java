@@ -11,19 +11,19 @@ import net.minecraft.network.packet.CustomPayload;
 import org.jetbrains.annotations.NotNull;
 
 public record GunDropPayload() implements CustomPayload {
-	public static final Id<GunDropPayload> ID = new Id<>(TMM.id("gundrop"));
+    public static final Id<GunDropPayload> ID = new Id<>(TMM.id("gundrop"));
     public static final PacketCodec<PacketByteBuf, GunDropPayload> CODEC = PacketCodec.unit(new GunDropPayload());
 
-	@Override
-	public Id<? extends CustomPayload> getId() {
-		return ID;
-	}
+    @Override
+    public Id<? extends CustomPayload> getId() {
+        return ID;
+    }
 
-	@Environment(EnvType.CLIENT)
-	public static class Receiver implements ClientPlayNetworking.PlayPayloadHandler<GunDropPayload> {
-		@Override
-		public void receive(@NotNull GunDropPayload payload, ClientPlayNetworking.@NotNull Context context) {
-			context.player().getInventory().remove((s) -> s.isOf(TMMItems.REVOLVER), 1, context.player().getInventory());
-		}
-	}
+    @Environment(EnvType.CLIENT)
+    public static class Receiver implements ClientPlayNetworking.PlayPayloadHandler<GunDropPayload> {
+        @Override
+        public void receive(@NotNull GunDropPayload payload, ClientPlayNetworking.@NotNull Context context) {
+            context.player().getInventory().remove((s) -> s.isOf(TMMItems.REVOLVER), 1, context.player().getInventory());
+        }
+    }
 }

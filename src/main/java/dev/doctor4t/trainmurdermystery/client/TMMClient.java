@@ -18,8 +18,8 @@ import dev.doctor4t.trainmurdermystery.client.render.block_entity.SmallDoorBlock
 import dev.doctor4t.trainmurdermystery.client.render.block_entity.WheelBlockEntityRenderer;
 import dev.doctor4t.trainmurdermystery.client.render.entity.FirecrackerEntityRenderer;
 import dev.doctor4t.trainmurdermystery.client.util.TMMItemTooltips;
-import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
+import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.index.*;
 import dev.doctor4t.trainmurdermystery.util.GunDropPayload;
 import dev.doctor4t.trainmurdermystery.util.HandParticleManager;
@@ -231,10 +231,10 @@ public class TMMClient implements ClientModInitializer {
 
         // Instinct keybind
         instinctKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key."+ TMM.MOD_ID+".instinct",
+                "key." + TMM.MOD_ID + ".instinct",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_LEFT_ALT,
-                "category."+ TMM.MOD_ID+".keybinds"
+                "category." + TMM.MOD_ID + ".keybinds"
         ));
     }
 
@@ -297,6 +297,7 @@ public class TMMClient implements ClientModInitializer {
     public static boolean shouldInstinctHighlight(Entity entityToHighlight) {
         return isInstinctEnabled() && entityToHighlight instanceof PlayerEntity player && GameFunctions.isPlayerAliveAndSurvival(player);
     }
+
     public static boolean isInstinctEnabled() {
         return TMMClient.instinctKeybind.isPressed() && TMMClient.isHitman() && TMMClient.isPlayerAliveAndInSurvival();
     }

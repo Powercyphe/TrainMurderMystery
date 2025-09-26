@@ -26,7 +26,10 @@ public class HandParticle {
     public Function<Identifier, RenderLayer> renderLayerFactory;
 
     public HandParticle() {
-        this.u0 = 0f; this.v0 = 0f; this.u1 = 1f; this.v1 = 1f;
+        this.u0 = 0f;
+        this.v0 = 0f;
+        this.u1 = 1f;
+        this.v1 = 1f;
         this.age = 0f;
 
         this.x = 0f;
@@ -87,7 +90,7 @@ public class HandParticle {
 
     public HandParticle setLight(int block, int sky) {
         block = Math.max(0, Math.min(15, block));
-        sky   = Math.max(0, Math.min(15, sky));
+        sky = Math.max(0, Math.min(15, sky));
 
         this.light = (sky << 20) | (block << 4);
         return this;

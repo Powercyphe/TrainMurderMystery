@@ -1,7 +1,6 @@
 package dev.doctor4t.trainmurdermystery.item;
 
 import dev.doctor4t.trainmurdermystery.entity.FirecrackerEntity;
-import dev.doctor4t.trainmurdermystery.entity.PlayerBodyEntity;
 import dev.doctor4t.trainmurdermystery.index.TMMEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

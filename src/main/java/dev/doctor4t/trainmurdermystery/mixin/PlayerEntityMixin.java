@@ -28,7 +28,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Unit;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -42,10 +41,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
-    @Shadow public abstract float getAttackCooldownProgress(float baseTime);
+    @Shadow
+    public abstract float getAttackCooldownProgress(float baseTime);
 
-    @Unique private float sprintingTicks;
-    @Unique private Scheduler.ScheduledTask poisonSleepTask;
+    @Unique
+    private float sprintingTicks;
+    @Unique
+    private Scheduler.ScheduledTask poisonSleepTask;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -79,7 +81,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @WrapMethod(method = "attack")
     public void attack(Entity target, Operation<Void> original) {
-        PlayerEntity self = (PlayerEntity) (Object)this;
+        PlayerEntity self = (PlayerEntity) (Object) this;
         if (!GameFunctions.isPlayerAliveAndSurvival(self) || this.getMainHandStack().isOf(TMMItems.KNIFE)) {
             original.call(target);
         }

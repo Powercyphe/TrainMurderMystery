@@ -11,7 +11,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -24,9 +23,11 @@ import java.util.Optional;
 
 public class PlateBlockEntity extends BlockEntity {
     private final List<ItemStack> storedItems = new ArrayList<>();
+
     public List<ItemStack> getStoredItems() {
         return storedItems;
     }
+
     public void addItem(ItemStack stack) {
         if (stack.isEmpty()) return;
 
@@ -35,9 +36,11 @@ public class PlateBlockEntity extends BlockEntity {
     }
 
     private int poisonedItemsCount = 0;
+
     public int getPoisonedItemsCount() {
         return poisonedItemsCount;
     }
+
     public void setPoisonedItemsCount(int poisonedItemsCount) {
         this.poisonedItemsCount = poisonedItemsCount;
         sync();

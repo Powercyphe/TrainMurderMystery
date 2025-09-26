@@ -7,7 +7,6 @@ import dev.doctor4t.trainmurdermystery.util.ShopEntry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
@@ -82,7 +81,7 @@ public class PlayerPsychoComponent implements AutoSyncedComponent, ServerTicking
         this.psychoTicks = 0;
         this.player.getInventory().remove(itemStack -> itemStack.isOf(TMMItems.BAT), Integer.MAX_VALUE, this.player.playerScreenHandler.getCraftingInput());
         GameWorldComponent gameWorldComponent = TMMComponents.GAME.get(player.getWorld());
-        gameWorldComponent.setPsychosActive(gameWorldComponent.getPsychosActive()-1);
+        gameWorldComponent.setPsychosActive(gameWorldComponent.getPsychosActive() - 1);
     }
 
     public boolean startPsycho() {
@@ -90,7 +89,7 @@ public class PlayerPsychoComponent implements AutoSyncedComponent, ServerTicking
         if (ret) {
             this.setPsychoTicks(GameConstants.PSYCHO_TIMER);
             GameWorldComponent gameWorldComponent = TMMComponents.GAME.get(player.getWorld());
-            gameWorldComponent.setPsychosActive(gameWorldComponent.getPsychosActive()+1);
+            gameWorldComponent.setPsychosActive(gameWorldComponent.getPsychosActive() + 1);
         }
         return ret;
     }

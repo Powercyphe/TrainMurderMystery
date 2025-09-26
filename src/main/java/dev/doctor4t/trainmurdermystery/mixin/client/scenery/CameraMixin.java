@@ -45,8 +45,8 @@ public class CameraMixin {
                 strength = 1f;
 
                 if (TMM.isExposedToWind(player)) {
-                    float yawOffset = 1.5f* randomizeOffset(10);
-                    float pitchOffset =  1.5f*randomizeOffset(-10);
+                    float yawOffset = 1.5f * randomizeOffset(10);
+                    float pitchOffset = 1.5f * randomizeOffset(-10);
                     camera.setRotation(camera.getYaw() + yawOffset, camera.getPitch() + pitchOffset);
                 }
             }

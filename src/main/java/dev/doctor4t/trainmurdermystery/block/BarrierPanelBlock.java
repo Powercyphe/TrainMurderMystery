@@ -13,7 +13,7 @@ import net.minecraft.world.BlockView;
 
 import java.util.Map;
 
-public class BarrierPanelBlock extends PanelBlock{
+public class BarrierPanelBlock extends PanelBlock {
     private static final VoxelShape UP_SHAPE = Block.createCuboidShape(0.0, 15.9, 0.0, 16.0, 16.0, 16.0);
     private static final VoxelShape DOWN_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 0.1, 16.0);
     private static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 0.1, 16.0, 16.0);

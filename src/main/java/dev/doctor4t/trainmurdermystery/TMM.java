@@ -60,8 +60,8 @@ public class TMM implements ModInitializer {
     public static boolean isSkyVisibleAdjacent(@NotNull Entity player) {
         var mutable = new BlockPos.Mutable();
         var playerPos = BlockPos.ofFloored(player.getEyePos());
-        for (var x = -1; x <= 1; x+=2) {
-            for (var z = -1; z <= 1; z+=2) {
+        for (var x = -1; x <= 1; x += 2) {
+            for (var z = -1; z <= 1; z += 2) {
                 mutable.set(playerPos.getX() + x, playerPos.getY(), playerPos.getZ() + z);
                 if (player.getWorld().isSkyVisible(mutable)) {
                     return true;
@@ -115,10 +115,11 @@ public class TMM implements ModInitializer {
 // TORECORD: - Fixing the knife (now with a kill indicator)
 // TORECORD: - Grenade for clumped up people (foils the grouping up cheese)
 //              Does not kill the hitman (idk they have shrapnel body armor or something)
+//              Detail of the thrown grenade not having the pin or the handle
 // TORECORD: - Poison (poisons the next food or drink item)
 // TORECORD: - Scorpion (poisons the next person sleeping in the bed)
-// TORECORD: Getting food poisoned and then scorpion poisoned lowers the timer
-// TORECORD: - Gun
+// TORECORD:    Getting food poisoned and then scorpion poisoned lowers the timer
+// TORECORD: - Revolver
 //          allows the hitman to potentially pass as a detective / passenger with a gun on top of giving a ranged option
 //          double edged sword because just like for other passengers, you drop it when you shoot an innocent, which means that there is now one more gun in circulation people can use against you
 //          counter to people trying to make you pick up the gun and confirm you are the hitman because remember you can't pick it up if you already have a revolver
@@ -130,6 +131,7 @@ public class TMM implements ModInitializer {
 //              True darkness doesn't work that well because of skylight seeping into the block, add a light barrier block that blocks it from entering
 //              Disable name renderer for the duration of the blackout to prevent people seeing in the dark
 // TORECORD: - Firecracker (luring people, shooting the gun in spectator often led to people rushing in from curiosity, allowing the hitman to manipulate players)
+// TORECORD: - Body bag (can be used to clean up a kill, but very expensive)
 // TODO: - Note (allows the hitman to leave messages, fun for encouraging the roleplay aspect)
 
 // TORECORD: Fixing the map

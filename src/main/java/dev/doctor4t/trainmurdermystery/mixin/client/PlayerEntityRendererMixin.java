@@ -14,7 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class PlayerEntityRendererMixin {
     @Inject(method = "getArmPose", at = @At("TAIL"), cancellable = true)
     private static void tmm$customArmPose(AbstractClientPlayerEntity player,
-                                              Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
-        if (player.getStackInHand(hand).isOf(TMMItems.BAT)) cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
+                                          Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
+        if (player.getStackInHand(hand).isOf(TMMItems.BAT))
+            cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
     }
 }
