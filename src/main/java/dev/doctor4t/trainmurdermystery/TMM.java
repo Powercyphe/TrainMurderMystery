@@ -1,6 +1,7 @@
 package dev.doctor4t.trainmurdermystery;
 
 import com.google.common.reflect.Reflection;
+import dev.doctor4t.trainmurdermystery.block.DoorPartBlock;
 import dev.doctor4t.trainmurdermystery.command.*;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.index.*;
@@ -9,6 +10,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -77,7 +79,7 @@ public class TMM implements ModInitializer {
             for (var z = -1; z <= 1; z += 2) {
                 mutable.set(playerPos.getX() + x, playerPos.getY(), playerPos.getZ() + z);
                 if (player.getWorld().isSkyVisible(mutable)) {
-                    return true;
+                    return !(player.getWorld().getBlockState(playerPos).getBlock() instanceof DoorPartBlock);
                 }
             }
         }
@@ -160,8 +162,12 @@ public class TMM implements ModInitializer {
 // TORECORD: Players collide with each other + lets you step on them
 // TORECORD: System that remembers previous roles and allows cycling of roles
 // TORECORD: Game start and end messages
+// TORECORD: Initial discovery mode
 
-// TODO: Initial discovery mode
+// TODO: Fix doors counting as outisde
+// TODO: Fix left handed item poses
+
+
 // TODO: small video tutorial on how to play
 
 // POST VIDEO
