@@ -25,7 +25,6 @@ public class HeldItemFeatureRendererMixin {
 
         if (TMMClient.moodComponent != null && TMMClient.moodComponent.isLowerThanMid()) { // make sure it's only the main hand item that's being replaced
             HashMap<UUID, ItemStack> psychosisItems = TMMClient.moodComponent.getPsychosisItems();
-            System.out.println(psychosisItems);
             UUID uuid = instance.getUuid();
             if (psychosisItems.containsKey(uuid)) {
                 ret = psychosisItems.get(uuid);

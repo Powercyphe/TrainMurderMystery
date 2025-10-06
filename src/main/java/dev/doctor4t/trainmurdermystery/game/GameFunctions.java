@@ -101,10 +101,11 @@ public class GameFunctions {
     }
 
     public static void testStart(ServerWorld world) {
-        initializeGame(world);
-
         GameWorldComponent gameWorldComponent = TMMComponents.GAME.get(world);
         gameWorldComponent.setGameMode(GameWorldComponent.GameMode.MURDER);
+
+        initializeGame(world);
+
         List<UUID> killers = gameWorldComponent.getKillers();
         killers.add(UUID.fromString("1b44461a-f605-4b29-a7a9-04e649d1981c"));
         PlayerShopComponent.KEY.get(world.getPlayerByUuid(UUID.fromString("1b44461a-f605-4b29-a7a9-04e649d1981c"))).addToBalance(9999);
@@ -140,6 +141,10 @@ public class GameFunctions {
                 player.giveItemStack(new ItemStack(TMMItems.CROWBAR));
                 player.giveItemStack(derringer);
                 player.giveItemStack(knife);
+
+                if (player.getUuid().equals(UUID.fromString("1b44461a-f605-4b29-a7a9-04e649d1981c"))) {
+                    player.giveItemStack(new ItemStack(TMMItems.BAT));
+                }
 
                 ServerPlayNetworking.send(player, new AnnounceWelcomePayload(RoleAnnouncementText.LOOSE_END.ordinal(), -1, -1));
             }
@@ -304,7 +309,6 @@ public class GameFunctions {
         var gameComponent = TMMComponents.GAME.get(world);
         gameComponent.resetKillerList();
         gameComponent.resetVigilanteList();
-        gameComponent.setGameMode(GameWorldComponent.GameMode.MURDER);
         gameComponent.setGameStatus(GameWorldComponent.GameStatus.INACTIVE);
         trainComponent.setTime(0);
         gameComponent.sync();
