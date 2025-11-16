@@ -14,10 +14,10 @@ public class GameRenderer {
     public static void renderHud(@NotNull DrawContext context) {
         context.getMatrices().push();
         context.getMatrices().translate(0, context.getScaledWindowHeight(), 0);
-        context.getMatrices().scale(0.125f, 0.125f, 1f);
+        context.getMatrices().scale(0.2f, 0.2f, 1f);
         context.getMatrices().translate(0, -254, 0);
-        context.getMatrices().translate(24, -24, 0);
-        context.drawTexture(TITLE, 0, 0, 0, 0, 497, 254, 497, 254);
+        context.getMatrices().translate(32, -32, 0);
+        context.drawTexturedQuad(TITLE, 0, 497, 0, 254, 0, 0, 1f, 0, 1f, 1f, 1f, 1f, 0.6f);
         context.getMatrices().pop();
     }
 }
