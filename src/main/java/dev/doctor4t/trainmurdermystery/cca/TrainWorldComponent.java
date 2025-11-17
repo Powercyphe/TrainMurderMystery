@@ -138,6 +138,14 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
         serverWorld.setTimeOfDay(timeOfDay.time);
     }
 
+    public void reset() {
+        this.snow = true;
+        this.fog = true;
+        this.screenshake = true;
+        this.hud = true;
+        this.sync();
+    }
+
     public enum TimeOfDay implements StringIdentifiable {
         DAY(6000),
         NIGHT(18000),

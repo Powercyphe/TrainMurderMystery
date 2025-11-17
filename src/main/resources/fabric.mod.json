@@ -7,10 +7,6 @@
 	"authors": [
 		"doctor4t"
 	],
-	"contact": {
-		"homepage": "https://modrinth.com/mod/trainmurdermystery",
-		"sources": "https://github.com/doctor4t/TrainMurderMystery"
-	},
 	"license": "ARR",
 	"icon": "assets/trainmurdermystery/icon.png",
 	"environment": "*",

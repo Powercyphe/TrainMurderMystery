@@ -2,6 +2,7 @@ package dev.doctor4t.trainmurdermystery.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
 import dev.doctor4t.trainmurdermystery.command.argument.TMMGameModeArgumentType;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
@@ -34,7 +35,10 @@ public class StartCommand {
             return -1;
         }
 
-        GameFunctions.startGame(source.getWorld(), gameMode, GameConstants.getInTicks(minutes, 0));
-        return 1;
+        return TMM.executeSupporterCommand(source,
+                () -> {
+                    GameFunctions.startGame(source.getWorld(), gameMode, GameConstants.getInTicks(minutes, 0));
+                }
+        );
     }
 }

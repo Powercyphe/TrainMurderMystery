@@ -8,6 +8,7 @@ import dev.doctor4t.trainmurdermystery.command.argument.TimeOfDayArgumentType;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.index.*;
 import dev.doctor4t.trainmurdermystery.util.*;
+import dev.upcraft.datasync.api.util.Entitlements;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -15,11 +16,18 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
 import net.minecraft.entity.Entity;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class TMM implements ModInitializer {
     public static final String MOD_ID = "trainmurdermystery";
@@ -56,7 +64,7 @@ public class TMM implements ModInitializer {
             ResetWeightsCommand.register(dispatcher);
             SetVisualCommand.register(dispatcher);
             ForceRoleCommand.register(dispatcher);
-            UpdateDoorsCommand.register(dispatcher);
+//            UpdateDoorsCommand.register(dispatcher);
             SetTimerCommand.register(dispatcher);
             SetMoneyCommand.register(dispatcher);
             SetBoundCommand.register(dispatcher);
@@ -105,11 +113,26 @@ public class TMM implements ModInitializer {
         }
         return true;
     }
+
+    public static final Identifier COMMAND_ACCESS = id("commandaccess");
+    public static int executeSupporterCommand(ServerCommandSource source, Runnable runnable) {
+        ServerPlayerEntity player = source.getPlayer();
+        if (player == null) return 0;
+
+        Optional<Entitlements> entitlements = Entitlements.token().get(player.getUuid());
+        if (entitlements.map(value -> value.keys().stream().anyMatch(identifier -> identifier.equals(COMMAND_ACCESS))).orElse(false)) {
+            runnable.run();
+            return 1;
+        } else {
+            player.sendMessage(Text.translatable("commands.supporter_only"));
+            return 0;
+        }
+
+    }
 }
 
 
 // POST RECORDING
-// TORECORD: Ability to customize time of day for supporters + snow density
 // TODO: Watermark?
 // TODO: Sticky note price cheaper
 // TODO: note reset button on the screen to remove all typed text

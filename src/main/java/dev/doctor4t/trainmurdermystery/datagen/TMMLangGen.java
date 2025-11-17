@@ -37,6 +37,7 @@ public class TMMLangGen extends FabricLanguageProvider {
 //        builder.add("tip.letter.detective.tooltip4", "Perfect situation to corner but need to keep targets safe.");
 
         builder.add("lobby.players.count", "Players boarded: %s / %s");
+        builder.add("lobby.credit", "Thank you for playing The Last Voyage of the Harpy Express!\nMe and my team spent a lot of time working\non this mod and we hope you enjoy it.\nIf you do and wish to make a video or stream\nplease make sure to credit me and my video!\n - RAT / doctor4t");
 
         builder.add("announcement.role.civilian", "Civilian!");
         builder.add("announcement.role.vigilante", "Vigilante!");
@@ -126,5 +127,7 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("game.tip.cohort", "Killer Cohort");
         builder.add("game.start_error.not_enough_players", "Game cannot start: 6 players minimum are required.");
         builder.add("game.start_error.game_running", "Game cannot start: a game is already running. Please try again from the lobby.");
+
+        builder.add("commands.supporter_only", "Super silly supporter commands are reserved for Ko-Fi and YouTube members; if you wanna try them out, please consider supporting! <3");
     }
 }

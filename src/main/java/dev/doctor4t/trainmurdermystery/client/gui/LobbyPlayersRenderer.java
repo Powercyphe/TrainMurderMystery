@@ -1,5 +1,6 @@
 package dev.doctor4t.trainmurdermystery.client.gui;
 
+import dev.doctor4t.ratatouille.util.TextUtils;
 import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import net.minecraft.client.font.TextRenderer;
@@ -18,8 +19,19 @@ public class LobbyPlayersRenderer {
             var players = world.getPlayers();
             var count = players.size();
             var ready = players.stream().filter(p -> GameConstants.READY_AREA.contains(p.getPos())).count();
-            var text = Text.translatable("lobby.players.count", ready, count);
-            context.drawTextWithShadow(renderer, text, -renderer.getWidth(text) / 2, 0, 0xFFFFFFFF);
+            var playerCountText = Text.translatable("lobby.players.count", ready, count);
+            context.drawTextWithShadow(renderer, playerCountText, -renderer.getWidth(playerCountText) / 2, 0, 0xFFFFFFFF);
+            context.getMatrices().pop();
+
+            context.getMatrices().push();
+            float scale = 0.75f;
+            context.getMatrices().translate(0, context.getScaledWindowHeight(), 0);
+            context.getMatrices().scale(scale, scale, 1f);
+            int i = 0;
+            for (Text text : TextUtils.getWithLineBreaks(Text.translatable("lobby.credit", ready, count))) {
+                i++;
+                context.drawTextWithShadow(renderer, text, 10, -80 + 10 * i, 0xFFFFFFFF);
+            }
             context.getMatrices().pop();
         }
     }

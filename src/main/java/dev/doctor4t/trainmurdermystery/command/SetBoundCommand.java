@@ -2,6 +2,7 @@ package dev.doctor4t.trainmurdermystery.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
+import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
 import dev.doctor4t.trainmurdermystery.cca.TrainWorldComponent;
 import net.minecraft.server.command.CommandManager;
@@ -17,9 +18,12 @@ public class SetBoundCommand {
     }
 
     private static int execute(ServerCommandSource source, boolean enabled) {
-        GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(source.getWorld());
-        gameWorldComponent.setBound(enabled);
-        return 1;
+        return TMM.executeSupporterCommand(source,
+                () -> {
+                    GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(source.getWorld());
+                    gameWorldComponent.setBound(enabled);
+                }
+        );
     }
 
 }

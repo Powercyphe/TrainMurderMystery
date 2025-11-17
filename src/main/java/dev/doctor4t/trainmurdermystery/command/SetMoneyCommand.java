@@ -3,6 +3,7 @@ package dev.doctor4t.trainmurdermystery.command;
 import com.google.common.collect.ImmutableList;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.cca.PlayerShopComponent;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.Entity;
@@ -15,6 +16,7 @@ public class SetMoneyCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
                 CommandManager.literal("tmm:setMoney")
+                        .requires(source -> source.hasPermissionLevel(2))
                         .then(
                                 CommandManager.argument("amount", IntegerArgumentType.integer(0))
                                         .executes(context -> execute(context.getSource(), ImmutableList.of(context.getSource().getEntityOrThrow()), IntegerArgumentType.getInteger(context, "amount")))
@@ -27,11 +29,14 @@ public class SetMoneyCommand {
     }
 
     private static int execute(ServerCommandSource source, Collection<? extends Entity> targets, int amount) {
-        for (Entity target : targets) {
-            PlayerShopComponent.KEY.get(target).setBalance(amount);
-        }
 
-        return 1;
+        return TMM.executeSupporterCommand(source,
+                () -> {
+                    for (Entity target : targets) {
+                        PlayerShopComponent.KEY.get(target).setBalance(amount);
+                    }
+                }
+        );
     }
 
 }

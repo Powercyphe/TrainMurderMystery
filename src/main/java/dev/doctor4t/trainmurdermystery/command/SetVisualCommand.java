@@ -3,6 +3,7 @@ package dev.doctor4t.trainmurdermystery.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.cca.TrainWorldComponent;
 import dev.doctor4t.trainmurdermystery.command.argument.TimeOfDayArgumentType;
 import net.minecraft.server.command.CommandManager;
@@ -32,12 +33,23 @@ public class SetVisualCommand {
                 .then(CommandManager.literal("time")
                         .then(CommandManager.argument("timeOfDay", TimeOfDayArgumentType.timeofday())
                                 .executes(context -> execute(context.getSource(), TrainWorldComponent::setTimeOfDay, TimeOfDayArgumentType.getTimeofday(context, "timeOfDay")))))
+                .then(CommandManager.literal("reset")
+                                .executes(context -> reset(context.getSource())))
         );
     }
 
-    private static <T> int execute(ServerCommandSource source, BiConsumer<TrainWorldComponent, T> consumer, T value) {
-        consumer.accept(TrainWorldComponent.KEY.get(source.getWorld()), value);
+    private static int reset(ServerCommandSource source) {
+        TrainWorldComponent trainWorldComponent = TrainWorldComponent.KEY.get(source.getWorld());
+        trainWorldComponent.reset();
         return 1;
+    }
+
+    private static <T> int execute(ServerCommandSource source, BiConsumer<TrainWorldComponent, T> consumer, T value) {
+        return TMM.executeSupporterCommand(source,
+                () -> {
+                    consumer.accept(TrainWorldComponent.KEY.get(source.getWorld()), value);
+                }
+        );
     }
 
 }

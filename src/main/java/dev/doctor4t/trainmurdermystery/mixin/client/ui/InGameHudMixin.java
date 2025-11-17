@@ -49,7 +49,6 @@ public class InGameHudMixin {
             TimeRenderer.renderHud(renderer, player, context, tickCounter.getTickDelta(true));
             LobbyPlayersRenderer.renderHud(renderer, player, context);
         }
-        GameRenderer.renderHud(context);
     }
 
     @WrapMethod(method = "renderCrosshair")

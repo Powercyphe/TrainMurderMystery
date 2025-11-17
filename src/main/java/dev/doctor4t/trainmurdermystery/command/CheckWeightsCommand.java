@@ -1,6 +1,7 @@
 package dev.doctor4t.trainmurdermystery.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.cca.ScoreboardRoleSelectorComponent;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import net.minecraft.server.command.CommandManager;
