@@ -5,6 +5,7 @@ import dev.doctor4t.trainmurdermystery.client.TMMClient;
 import dev.doctor4t.trainmurdermystery.client.particle.HandParticle;
 import dev.doctor4t.trainmurdermystery.client.render.TMMRenderLayers;
 import dev.doctor4t.trainmurdermystery.client.util.TMMItemTooltips;
+import dev.doctor4t.trainmurdermystery.event.AllowPlayerShotDeath;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.index.TMMDataComponentTypes;
 import dev.doctor4t.trainmurdermystery.util.GunShootPayload;
@@ -73,6 +74,6 @@ public class DerringerItem extends RevolverItem {
     }
 
     public static HitResult getGunTarget(PlayerEntity user) {
-        return ProjectileUtil.getCollision(user, entity -> entity instanceof PlayerEntity player && GameFunctions.isPlayerAliveAndSurvival(player), 7f);
+        return ProjectileUtil.getCollision(user, entity -> entity instanceof PlayerEntity player && GameFunctions.isPlayerAliveAndSurvival(player) && AllowPlayerShotDeath.EVENT.invoker().allowShot(player), 7f);
     }
 }
